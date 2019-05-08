@@ -16,7 +16,7 @@ if not isinstance(numeric_level, int):
 formatter = Formatter('%(asctime)s|%(levelname)s|%(module)s|%(process)d|system|%(funcName)s||success||%(message)s|',
                       '%Y-%m-%d %H:%M:%S')
 logging.basicConfig(level=numeric_level)
-logger = logging.getLogger("traning")
+logger = logging.getLogger("Algorithm")
 timeRotatingHandler = TimedRotatingFileHandler('%s.log' % "traning", when='midnight')
 timeRotatingHandler.setFormatter(formatter)
 timeRotatingHandler.suffix = "_%Y%m%d.log"
