@@ -68,6 +68,48 @@ class Solution:
                     return False
         return True
 
+    def solve_soduku2(self, board):
+        fill_points = []
+        for i in board:
+            for j in board:
+                if board[i][j] == ".":
+                    fill_points.append([i, j])
+
+
+class Solution2:
+    def __init__(self):
+        self.fill_points = []
+
+    def set_fill_point(self, board):
+        for i in board:
+            for j in board:
+                if board[i][j] == ".":
+                    self.fill_points.append([i, j])
+
+    def judge_repeat(self, board, index, value):
+        for q in range(9):
+            if board[q][self.fill_points[index][1]] == value:
+                return False
+        a = self.fill_points[index][1] // 3
+        b = self.fill_points[index][1] // 3
+        for m in range(a * 3, a * 3 + 3):
+            for n in range(b * 3, b * 3 + 3):
+                if board[m][n] == value:
+                    return False
+        return True
+
+    def solve_sudoku(self, board):
+        self.set_fill_point(board)
+
+        def fill_point(index):
+            for i in range(1, 10):
+                if self.judge_repeat(board, index, i):
+                    board[self.fill_points[index][0]][self.fill_points[index][1]] = i
+                    fill_point(index + 1)
+            else:
+                fill_point(index - 1)
+        fill_point(0)
+
 
 if __name__ == '__main__':
     sudoku = [
