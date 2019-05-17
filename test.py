@@ -59,6 +59,7 @@ class Solution:
 
         backtrack(0)
 
+
 if __name__ == '__main__':
     sudoku = [
         ['5', '3', ".", ".", '7', ".", ".", ".", "."],

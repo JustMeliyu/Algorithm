@@ -68,68 +68,65 @@ class Solution:
                     return False
         return True
 
-    def solve_soduku2(self, board):
-        fill_points = []
-        for i in board:
-            for j in board:
-                if board[i][j] == ".":
-                    fill_points.append([i, j])
-
 
 class Solution2:
     def __init__(self):
         self.fill_points = []
 
-    def set_fill_point(self, board):
-        for i in board:
-            for j in board:
+    def solveSudoku(self, board):
+        fill_points = []
+        for i in range(9):
+            for j in range(9):
                 if board[i][j] == ".":
-                    self.fill_points.append([i, j])
+                    fill_points.append([i, j])
 
-    def judge_repeat(self, board, index, value):
-        for q in range(9):
-            if board[q][self.fill_points[index][1]] == value:
-                return False
-        a = self.fill_points[index][1] // 3
-        b = self.fill_points[index][1] // 3
-        for m in range(a * 3, a * 3 + 3):
-            for n in range(b * 3, b * 3 + 3):
-                if board[m][n] == value:
+        def judge_repeat(index, value):
+            for q in range(9):
+                if board[fill_points[index][0]][q] == value:
                     return False
-        return True
-
-    def solve_sudoku(self, board):
-        self.set_fill_point(board)
+                if board[q][fill_points[index][1]] == value:
+                    return False
+            a = fill_points[index][0] // 3
+            b = fill_points[index][1] // 3
+            for m in range(a * 3, a * 3 + 3):
+                for n in range(b * 3, b * 3 + 3):
+                    if board[m][n] == value:
+                        return False
+            return True
 
         def fill_point(index):
-            for i in range(1, 10):
-                if self.judge_repeat(board, index, i):
-                    board[self.fill_points[index][0]][self.fill_points[index][1]] = i
-                    fill_point(index + 1)
-            else:
-                fill_point(index - 1)
+            if index == len(fill_points):
+                return True
+            for v in range(1, 10):
+                if judge_repeat(index, str(v)):
+                    board[fill_points[index][0]][fill_points[index][1]] = str(v)
+                    if fill_point(index + 1):
+                        return True
+                    board[fill_points[index][0]][fill_points[index][1]] = "."
+            return False
+
         fill_point(0)
 
 
 if __name__ == '__main__':
-    sudoku = [
-        ['5', '3', ".", ".", '7', ".", ".", ".", "."],
-        ['6', ".", ".", '1', '9', '5', ".", ".", "."],
-        [".", '9', '8', ".", ".", ".", ".", '6', "."],
-        ['8', ".", ".", ".", '6', ".", ".", ".", '3'],
-        ['4', ".", ".", '8', ".", '3', ".", ".", '1'],
-        ['7', ".", ".", ".", '2', ".", ".", ".", '6'],
-        [".", '6', ".", ".", ".", ".", '2', '8', "."],
-        [".", ".", ".", '4', '1', '9', ".", ".", '5'],
-        [".", ".", ".", ".", '8', ".", ".", '7', '9']
-    ]
 
     @get_func_time
     def test():
-        s = Solution()
-        s.solve_sudoku(sudoku)
+        sudoku = [
+            ['5', '3', ".", ".", '7', ".", ".", ".", "."],
+            ['6', ".", ".", '1', '9', '5', ".", ".", "."],
+            [".", '9', '8', ".", ".", ".", ".", '6', "."],
+            ['8', ".", ".", ".", '6', ".", ".", ".", '3'],
+            ['4', ".", ".", '8', ".", '3', ".", ".", '1'],
+            ['7', ".", ".", ".", '2', ".", ".", ".", '6'],
+            [".", '6', ".", ".", ".", ".", '2', '8', "."],
+            [".", ".", ".", '4', '1', '9', ".", ".", '5'],
+            [".", ".", ".", ".", '8', ".", ".", '7', '9']
+        ]
+        s = Solution2()
+        s.solveSudoku(sudoku)
         print(sudoku)
-        print(s.count)
+        # print(s.count)
 
     test()
 
