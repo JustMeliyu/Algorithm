@@ -91,3 +91,16 @@ def is_thread_finish(thread_pool):
         if not thread_pool:
             break
     logger.info("all thread finish")
+
+
+def write_json_file(file_path, data):
+    with open(file_path, 'w') as load_f:
+        json.dump(data, load_f, ensure_ascii=False)
+
+
+@get_func_time
+def run_mothod(func, *args, **kwargs):
+    logger.info("current func is {0}".format(func.__name__))
+    result = func(*args, **kwargs)
+    logger.info(result)
+    return result
