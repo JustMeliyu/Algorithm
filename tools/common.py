@@ -28,7 +28,7 @@ class APIEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, obj)
 
 
-def max_conenct(func):
+def max_connect(func):
     @wraps(func)
     def _max_connect(*args, **kwargs):
         _max = 5
@@ -99,7 +99,7 @@ def write_json_file(file_path, data):
 
 
 @get_func_time
-def run_mothod(func, *args, **kwargs):
+def run_method(func, *args, **kwargs):
     logger.info("current func is {0}".format(func.__name__))
     result = func(*args, **kwargs)
     logger.info(result)

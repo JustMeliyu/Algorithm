@@ -19,7 +19,7 @@ Describe:
 输出: 7
 解释: 因为路径 1→3→1→1→1 的总和最小。
 """
-from tools.common import run_mothod
+from tools.common import run_method
 from tools.logger import logger
 
 
@@ -124,7 +124,7 @@ if __name__ == '__main__':
             [2, 3, 2, 4, 8, 5, 1, 7, 2, 9, 5, 2, 4, 2, 9, 2, 8, 7],
             [0, 1, 6, 1, 1, 0, 0, 6, 5, 4, 3, 4, 3, 7, 9, 6, 1, 9]]
     s = Solution()
-    re = run_mothod(s.min_path_sum, data)
-    re = run_mothod(s.min_path_sum2, data)
-    re = run_mothod(s.min_path_sum3, data, len(data) - 1, len(data[0]) - 1)
-    re = run_mothod(s.min_path_sum4, data)
+    re = run_method(s.min_path_sum, data)
+    re = run_method(s.min_path_sum2, data)
+    re = run_method(s.min_path_sum3, data, len(data) - 1, len(data[0]) - 1)
+    re = run_method(s.min_path_sum4, data)

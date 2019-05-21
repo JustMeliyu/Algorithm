@@ -7,7 +7,7 @@ Describe: 爬楼梯
 一共有10级楼梯, 每次只能走1步或者2步, 爬上这个楼梯一共需要多少种方式
 """
 import sys
-from tools.common import get_func_time, run_mothod
+from tools.common import get_func_time, run_method
 sys.setrecursionlimit(10000)    # 增加递归次数
 
 
@@ -15,7 +15,7 @@ class Solution(object):
     def __init__(self):
         self.count = 0
 
-    def climb_stairs(self, step: int):
+    def climb_stairs(self, step):
         """
         时间复杂度: O(2^N), 空间复杂度: O(1)
         :param step:
@@ -28,7 +28,7 @@ class Solution(object):
             return 2
         return self.climb_stairs(step - 1) + self.climb_stairs(step - 2)
 
-    def climb_stairs2(self, step: int, dic: dict):
+    def climb_stairs2(self, step, dic):
         """
         时间复杂度: O(N), 空间复杂度O(N)
         :param step:
@@ -47,7 +47,7 @@ class Solution(object):
             dic[step] = value
         return value
 
-    def climb_stairs3(self, step: int):
+    def climb_stairs3(self, step):
         """
         时间复杂度: O(N), 空间复杂度O(1)
         :param step:
@@ -70,5 +70,12 @@ class Solution(object):
 if __name__ == '__main__':
     info = {}
     s = Solution()
-    run_mothod(s.climb_stairs2, 1000, info)
-    run_mothod(s.climb_stairs3, 1000)
+    run_method(s.climb_stairs, 20)
+    print(s.count)
+    s.count = 0
+    run_method(s.climb_stairs2, 1000, info)
+    print(s.count)
+    s.count = 0
+    run_method(s.climb_stairs3, 1000)
+    print(s.count)
+    s.count = 0
