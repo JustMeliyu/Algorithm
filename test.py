@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*- 
 
 """
-Author: Anger36
+Author: Road36
 Date: 19-5-16
 Describe:
 """
+from tmp import a, _tt
 from tools.common import get_func_time
 
 
@@ -84,3 +85,4 @@ if __name__ == '__main__':
 
     # v = {(1, 3): "10000000000"}
     # print(v[(1, 3)])
+    print(_tt)

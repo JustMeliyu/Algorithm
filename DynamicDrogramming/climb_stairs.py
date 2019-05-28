@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*- 
 
 """
-Author: Anger36
+Author: Road36
 Date: 19-5-17
 Describe: 爬楼梯
 一共有10级楼梯, 每次只能走1步或者2步, 爬上这个楼梯一共需要多少种方式

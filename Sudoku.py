@@ -1,7 +1,7 @@
 # -*-coding:utf-8-*- 
 
 """
-Author: Anger36
+Author: Road36
 Date: 19-5-9
 Describe:
 编写一个程序，通过已填充的空格来解决数独问题。
@@ -15,6 +15,7 @@ Describe:
 """
 import sys
 from tools.common import get_func_time
+import numpy as np
 sys.setrecursionlimit(10000)    # 增加递归次数
 
 
@@ -112,7 +113,7 @@ if __name__ == '__main__':
 
     @get_func_time
     def test():
-        sudoku = [
+        sudoku = np.array([
             ['5', '3', ".", ".", '7', ".", ".", ".", "."],
             ['6', ".", ".", '1', '9', '5', ".", ".", "."],
             [".", '9', '8', ".", ".", ".", ".", '6', "."],
@@ -122,7 +123,9 @@ if __name__ == '__main__':
             [".", '6', ".", ".", ".", ".", '2', '8', "."],
             [".", ".", ".", '4', '1', '9', ".", ".", '5'],
             [".", ".", ".", ".", '8', ".", ".", '7', '9']
-        ]
+        ], str)
+        print(sudoku)
+        print("=================")
         s = Solution2()
         s.solveSudoku(sudoku)
         print(sudoku)
