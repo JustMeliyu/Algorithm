@@ -41,10 +41,9 @@ class Solution:
     def bestRotation(self, A) -> int:
         max_rotation = 0
         result = 0
-        new_list = []
         for K in range(len(A)):
             current_rotation = 0
-            new_list.append(A[K:] + A[:K])
+            new_list = A[K:] + A[:K]
             for i in range(len(new_list)):
                 if new_list[i] <= i:
                     current_rotation += 1
