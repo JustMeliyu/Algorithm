@@ -23,6 +23,7 @@ https://leetcode-cn.com/problems/first-missing-positive/
 
 你的算法的时间复杂度应为O(n)，并且只能使用常数级别的空间。
 """
+from typing import List
 
 
 class Solution:
@@ -30,7 +31,7 @@ class Solution:
         pass
 
     @staticmethod
-    def firstMissingPositive(nums):
+    def firstMissingPositive(nums: List[int]) -> int:
         min_num = None
         is_serial = False
 
@@ -60,7 +61,7 @@ class Solution:
         return i + 1 if min_num else 1
 
     @staticmethod
-    def firstMissingPositive2(nums):
+    def firstMissingPositive2(nums: List[int]) -> int:
         if nums is None or nums.__len__() == 0:
             return 1
 
