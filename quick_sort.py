@@ -69,6 +69,27 @@ def quick_sort3(my_list):
     return my_list
 
 
+def quick_sort4(start, end, my_list):
+    i = start
+    j = end
+    pivot = my_list[i]
+    while i < j:
+        while i < j and my_list[j] >= pivot:
+            j -= 1
+
+        my_list[j] = my_list[i]
+
+        while j > i and my_list[i] <= pivot:
+            i += 1
+
+        my_list[i] = my_list[j]
+
+    my_list[i] = pivot
+    quick_sort4(start, i, my_list)
+    quick_sort4(j, end, my_list)
+    return my_list
+
+
 if __name__ == "__main__":
     a = [3, 40, 7, 34, 2, 89, 1, 432, 23, 89, 5, 2222]
     # a = quick_sort2(0, len(a) - 1, a)

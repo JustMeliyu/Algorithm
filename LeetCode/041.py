@@ -103,5 +103,4 @@ class Solution:
 
 
 if __name__ == '__main__':
-    print Solution.firstMissingPositive([-5])
-    
+    print(Solution.firstMissingPositive([-5]))
