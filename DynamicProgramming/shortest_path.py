@@ -124,7 +124,7 @@ if __name__ == '__main__':
             [2, 3, 2, 4, 8, 5, 1, 7, 2, 9, 5, 2, 4, 2, 9, 2, 8, 7],
             [0, 1, 6, 1, 1, 0, 0, 6, 5, 4, 3, 4, 3, 7, 9, 6, 1, 9]]
     s = Solution()
-    re = run_method(s.min_path_sum, data)
-    re = run_method(s.min_path_sum2, data)
-    re = run_method(s.min_path_sum3, data, len(data) - 1, len(data[0]) - 1)
-    re = run_method(s.min_path_sum4, data)
+    # re = run_method(s.min_path_sum, data)
+    # re = run_method(s.min_path_sum2, data)
+    # re = run_method(s.min_path_sum3, data, len(data) - 1, len(data[0]) - 1)
+    # re = run_method(s.min_path_sum4, data)
