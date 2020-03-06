@@ -17,4 +17,4 @@ def count_path(m, n):
 
 
 if __name__ == '__main__':
-    print count_path(7, 3)
+    print(count_path(7, 3))
