@@ -34,7 +34,7 @@ class Solution(object):
         pass
 
     @get_func_time
-    def longestPalindrome3(self, s):
+    def longestPalindrome3(self, s: str) -> str:
         # 暴力解法
         l = len(s)
         max_len = 0
@@ -45,15 +45,15 @@ class Solution(object):
                     max_len = len(s[i:j + 1])
                     max_str = s[i:j + 1]
 
-        return max_len, max_str
+        return max_str
 
     @get_func_time
-    def longestPalindrome2(self, s):
+    def longestPalindrome2(self, s: str) -> str:
         l = len(s)
         if l in (0, 1):
-            return l, s
+            return s
         elif l == 2:
-            return l, s if s[0] == s[1] else 1, s[0]
+            return s if s[0] == s[1] else s[0]
 
         max_len = 1
         max_str = s[0]
@@ -78,7 +78,7 @@ class Solution(object):
         return max_str
 
     @get_func_time
-    def longestPalindrome(self, s):
+    def longestPalindrome(self, s: str) -> str:
         """pass all case by myself"""
         re = {}
         l = len(s)
@@ -104,7 +104,7 @@ class Solution(object):
                     max_str = s[j:end+1]
         return max_str
 
-    def longestPalindrome4(self, s):
+    def longestPalindrome4(self, s: str) -> str:
         """best code on leetcode"""
         if len(s) < 2 or s == s[::-1]:
             return s
