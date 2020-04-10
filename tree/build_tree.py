@@ -4,13 +4,7 @@
 https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
 从前序与中序遍历序列构造二叉树
 """
-
-
-class TreeNode(object):
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
+from tools.construction import TreeNode
 
 
 class Solution(object):
@@ -34,4 +28,4 @@ if __name__ == '__main__':
     s = Solution()
     pre = [3, 9, 20, 15, 7]
     inor = [9, 3, 15, 20, 7]
-    print s.buildTree(pre, inor)
+    print(s.buildTree(pre, inor))
