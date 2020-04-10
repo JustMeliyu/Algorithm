@@ -4,6 +4,8 @@
 Author: Road36
 Date: 2020-03-28
 Describe:
+__new__ 在对象创建之前创建一个对象并将该对象传递给 init
+__init__ 在对象创建后对对象进行初始化
 """
 
 import threading
