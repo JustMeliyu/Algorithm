@@ -18,6 +18,6 @@ class TreeNode:
 
 class ChainNode:
     """链表"""
-    def __init__(self, val, next=None):
+    def __init__(self, val, next_chain=None):
         self.val = val
-        self.next = next
+        self.next = next_chain
