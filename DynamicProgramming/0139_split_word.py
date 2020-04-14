@@ -44,7 +44,7 @@ class Solution:
         return word_break(s, wordDict, 0)
 
     def wordBreak2(self, s: str, wordDict: List[str]) -> bool:
-        dp = [False] * (len(wordDict) + 1)
+        dp = [False] * (len(s) + 1)
         dp[0] = True
         for i in range(1, len(s) + 1):
             for j in range(i):

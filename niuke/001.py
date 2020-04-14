@@ -6,21 +6,28 @@ Describe:
 随机给10个整数, 从其中随机抽选3个, 求 x^2 + x*y - y^2 + z 的最小值, 给定整数范围在-512-512之间
 https://blog.csdn.net/weixin_39971186/article/details/103315477
 """
-
+import sys
+import os
+from importlib import reload
+current_path = os.getcwd()
+sys.path.append(current_path)
+reload(sys)
 from typing import List
 import itertools
 from tools.common import get_func_time
 
+sys.setrecursionlimit(9000000)  # 这里设置大一些
+
 
 class Solution:
     def __init__(self):
-        self.min = None
+        self.min = float('inf')
 
     @get_func_time
     def min_value1(self, numbers: List[int]):
         # 使用迭代器
         for x, y, z in itertools.permutations(numbers, 3):
-            self.min = min(self.min, x * x + x * y - y * y + z) if self.min is not None else x * x + x * y - y * y + z
+            self.min = min(self.min, x * x + x * y - y * y + z)
         return self.min
 
     @get_func_time
@@ -33,7 +40,7 @@ class Solution:
                 for m, z in enumerate(numbers):
                     if i == m or j == m:
                         continue
-                    self.min = min(self.min, x * x + x * y - y * y + z) if self.min is not None else x * x + x * y - y * y + z
+                    self.min = min(self.min, x * x + x * y - y * y + z)
         return self.min
 
     @get_func_time
@@ -42,14 +49,14 @@ class Solution:
         def _min_value(my_nums: List[int], use_num: List[int], _min):
             if len(my_nums) == 3:
                 v = my_nums[0] * my_nums[0] + my_nums[0] * my_nums[1] - my_nums[1] * my_nums[1] + my_nums[2]
-                _min = min(_min, v) if _min is not None else v
+                _min = min(_min, v)
                 return _min, []
 
             for i in range(len(use_num)):
                 my_nums.append(i)
                 _min, my_nums = _min_value(my_nums, numbers[:i] + numbers[i+1:], _min)
             # return _min, my_nums
-        self.min, z = _min_value([], numbers, None)
+        self.min, z = _min_value([], numbers, float('inf'))
         return self.min
 
     @classmethod
@@ -82,13 +89,14 @@ class Solution2:
 
 
 if __name__ == '__main__':
-    a = [1, 1, 1, 1, 1, 1, 1, 1, 1, 3]
+    a = [1, 1, 1, 1, 1, 1, 1, 1, 1, 3] * 10
+    # a = [1, 1, 1]
 
     s = Solution()
     # print(s.min_value1(a))
-    # print(s.min_value2(a))
+    print(s.min_value2(a))
     # print(s.min_value3(a))
 
     # print([i for i in range(1000)])
     ss = Solution2()
-    print(ss.permute(a))
+    # print(ss.permute(a))
