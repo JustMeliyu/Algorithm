@@ -66,7 +66,8 @@ if __name__ == '__main__':
     # char = "ABA"
     char = "ABCDEFGHHA"
     # print(p.permutation_count(char))
-    a = [1, 1, 1, 1, 1, 1, 1, 1, 1, 3] * 10
+    # a = [1, 1, 1, 1, 1, 1, 1, 1, 1, 3]
+    a = [1, -1, 2, -2, 2, 3, -4, 0, 5, 3]
     # a = [1, 1, 3, 4]
     p.combination_count(a)
     print(p.count)
