@@ -47,34 +47,44 @@ class Solution(object):
 
         return max_str
 
-    @get_func_time
-    def longestPalindrome2(self, s: str) -> str:
-        l = len(s)
-        if l in (0, 1):
+    def longestPalindrome5(self, s: str) -> str:
+        _l = len(s)
+        if _l in (0, 1):
             return s
-        elif l == 2:
-            return s if s[0] == s[1] else s[0]
-
-        max_len = 1
         max_str = s[0]
 
-        for i in range(l - 1):
-            k = 0
-            while i - k >= 0 and i + k < l and s[i-k] == s[i+k]:
-                if 2*k + 1 > max_len:
-                    max_len = 2*k + 1
-                    max_str = s[i - k:i + k + 1]
-                k += 1
+        def get_longest(start, end):
+            while start > 0 and end < _l and s[start] == s[end]:
+                start -= 1
+                end += 1
+            return start + 1, end - 1
 
-            k = 0
-            if i + 1 > l or s[i] != s[i + 1]:
-                continue
+        def compare():
 
-            while i - k >= 0 and i + k + 1 < l and s[i-k] == s[i+k+1]:
-                if 2*k + 2 > max_len:
-                    max_len = 2*k + 2
-                    max_str = s[i - k:i + k + 2]
-                k += 1
+        for i in range(_l):
+            l1 = get_longest(i, i)
+            l2 = get_longest(i, i+1)
+            max_len = max(l1, l2)
+            if max_len > len(max_str):
+                max_str = s[i - int((max_len - 1) / 2):i + int(max_len / 2)]
+        return max_str
+
+    def longestPalindrome2(self, s: str) -> str:
+        _l = len(s)
+        if _l in (0, 1):
+            return s
+        re = [[False] * _l] * _l
+        max_len = 1
+        max_str = s[0]
+        for _len in range(1, _l + 1):   # 遍历所有长度
+            for start in range(_len):
+                end = start + _len - 1
+                if end >= _l:   # 下标越界，结束循环
+                    break
+                re[start][end] = (_len == 1 or _len == 2 or (re[start + 1][end - 1] and s[start] == s[end]))
+                if re[start][end] and _len > max_len:
+                    max_len = _len
+                    max_str = s[start:end + 1]
         return max_str
 
     @get_func_time
@@ -101,7 +111,7 @@ class Solution(object):
 
                 if re[(j, end)] and i > max_len:
                     max_len = i
-                    max_str = s[j:end+1]
+                    max_str = s[j:end + 1]
         return max_str
 
     def longestPalindrome4(self, s: str) -> str:
@@ -141,8 +151,10 @@ class Solution(object):
 
 if __name__ == '__main__':
     st = Solution()
-    sss = "whdqcudjpisufnrtsyupwtnnbsvfptrcgvobbjglmpynebblpigaflpbezjvjgbmofejyjssdhbgghgrhzuplbeptpaecfdanhlylgusptlgobkqnulxvnwuzwauewcplnvcwowmbxxnhsdmgxtvbfgnuqdpxennqglgmspbagvmjcmzmbsuacxlqfxjggrwsnbblnnwisvmpwwhomyjylbtedzrptejjsaiqzprnadkjxeqfdpkddmbzokkegtypxaafodjdwirynzurzkjzrkufsokhcdkajwmqvhcbzcnysrbsfxhfvtodqabvbuosxtonbpmgoemcgkudandrioncjigbyizekiakmrfjvezuzddjxqyevyenuebfwugqelxwpirsoyixowcmtgosuggrkdciehktojageynqkazsqxraimeopcsjxcdtzhlbvtlvzytgblwkmbfwmggrkpioeofkrmfdgfwknrbaimhefpzckrzwdvddhdqujffwvtvfyjlimkljrsnnhudyejcrtrwvtsbkxaplchgbikscfcbhovlepdojmqybzhbiionyjxqsmquehkhzdiawfxunguhqhkxqdiiwsbuhosebxrpcstpklukjcsnnzpbylzaoyrmyjatuovmaqiwfdfwyhugbeehdzeozdrvcvghekusiahfxhlzclhbegdnvkzeoafodnqbtanfwixjzirnoaiqamjgkcapeopbzbgtxsjhqurbpbuduqjziznblrhxbydxsmtjdfeepntijqpkuwmqezkhnkwbvwgnkxmkyhlbfuwaslmjzlhocsgtoujabbexvxweigplmlewumcone"
-    # sss = "babad"
+    # sss = "whdqcudjpisufnrtsyupwtnnbsvfptrcgvobbjglmpynebblpigaflpbezjvjgbmofejyjssdhbgghgrhzuplbeptpaecfdanhlylgusptlgobkqnulxvnwuzwauewcplnvcwowmbxxnhsdmgxtvbfgnuqdpxennqglgmspbagvmjcmzmbsuacxlqfxjggrwsnbblnnwisvmpwwhomyjylbtedzrptejjsaiqzprnadkjxeqfdpkddmbzokkegtypxaafodjdwirynzurzkjzrkufsokhcdkajwmqvhcbzcnysrbsfxhfvtodqabvbuosxtonbpmgoemcgkudandrioncjigbyizekiakmrfjvezuzddjxqyevyenuebfwugqelxwpirsoyixowcmtgosuggrkdciehktojageynqkazsqxraimeopcsjxcdtzhlbvtlvzytgblwkmbfwmggrkpioeofkrmfdgfwknrbaimhefpzckrzwdvddhdqujffwvtvfyjlimkljrsnnhudyejcrtrwvtsbkxaplchgbikscfcbhovlepdojmqybzhbiionyjxqsmquehkhzdiawfxunguhqhkxqdiiwsbuhosebxrpcstpklukjcsnnzpbylzaoyrmyjatuovmaqiwfdfwyhugbeehdzeozdrvcvghekusiahfxhlzclhbegdnvkzeoafodnqbtanfwixjzirnoaiqamjgkcapeopbzbgtxsjhqurbpbuduqjziznblrhxbydxsmtjdfeepntijqpkuwmqezkhnkwbvwgnkxmkyhlbfuwaslmjzlhocsgtoujabbexvxweigplmlewumcone"
+    sss = "cbabad"
     # sss = "cbbd"
     # print(st.longestPalindrome(sss))
-    print(st.longestPalindrome2(sss))
+    # print(st.longestPalindrome2(sss))
+    # print(st.longestPalindrome3(sss))
+    print(st.longestPalindrome5(sss))
